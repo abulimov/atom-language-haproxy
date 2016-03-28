@@ -1,0 +1,63 @@
+fileTypes: [
+  "haproxy"
+  "cfg"
+]
+foldingStartMarker: "^(global|defaults|listen|frontend|backend|ruleset)"
+foldingStopMarker: "^(global|defaults|listen|frontend|backend|ruleset)"
+name: "HAProxy"
+patterns: [
+  {
+    captures:
+      "2":
+        name: "string.unquoted.sectionname.haproxy-config"
+      "3":
+        name: "variable.parameter.ip-port.haproxy-config"
+      "5":
+        name: "punctuation.separator.ip.haproxy-config"
+      "6":
+        name: "variable.parameter.ip-port.haproxy-config"
+    match: "^(global|defaults|listen|frontend|backend|ruleset)\\s*(\\S+)?\\s*((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?(,)?((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?"
+    name: "meta.tag.haproxy-config"
+  }
+  {
+    match: "#.+$"
+    name: "comment.line.number-sign.haproxy-config"
+  }
+  {
+    match: "(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5}"
+    name: "variable.parameter.ip-port.haproxy-config"
+  }
+  {
+    match: "^\\s*(chroot|cliexp|clitimeout|contimeout|daemon|debug|disabled|enabled|fullconn|gid|grace|group|maxconn|monitor-uri|nbproc|noepoll|nopoll|pidfile|quiet|redispatch|retries|reqallow|reqdel|reqdeny|reqpass|reqtarpit|reqiallow|reqidel|reqideny|reqipass|reqitarpit|rspdel|rspdeny|rspidel|rspideny|reqsetbe|reqisetbe|reqadd|reqiadd|rspadd|rspiadd|servexp|srvtimeout|uid|ulimit-n|user|reqrep|reqirep|rsprep|rspirep|errorloc|errorloc302|errorloc303|default_backend|appsession|bind|balance|cookie|capture|dispatch|source|mode|monitor-net|option|stats|server|log|check|inter|rise|fall|backup|errorfile)\\b"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  {
+    match: "^\\s*(acl|use_backend|redirect|http-request|http-response)\\b"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  {
+    match: "\\s+((len|timeout|roundrobin|health|global|abortonclose|allbackups|checkcache|clitcpka|dontlognull|forceclose|forwardfor|httpchk|smtpchk|httpclose|httplog|keepalive|logasap|persist|srvtcpka|ssl-hello-chk|tcplog|tcpka|tcpsplice|except|uri|realm|auth|scope|enable|kern|user|mail|daemon|auth|syslog|lpr|news|uucp|cron|auth2|ftp|ntp|audit|alert|cron2|local0|local1|local2|local3|local4|local5|local6|local7|emerg|crit|err|warning|notice|info|debug|rewrite|insert|nocache|postonly|indirect|prefix|request|response|header|check|cookie|backup|inter|rise|fall|port|source|minconn|maxconn|weight|usesrc|http|tcp)\\s+)+"
+    name: "variable.language.reserved.haproxy-config"
+  }
+  {
+    match: "\\\\"
+    name: "constant.character.escape.haproxy-config"
+  }
+  {
+    match: "\\s+((base|cook|hdr|path|shdr|url|urlp)(_beg|_dir|_dom|_end|_len|_reg|_sub)?)\\b"
+    name: "entity.name.function.hdr.haproxy-config"
+  }
+  {
+    match: '\\b(if|rewrite)\\b'
+    name: 'keyword.control.directive.module.http.rewrite'
+  }
+  {
+    match: '%\\[[^\\]]+\\]'
+    name: 'variable.language.other.haproxy-config'
+  }
+  {
+    match: '\\s+(or|\\|\\||!)\\s+'
+    name: 'keyword.operator.logical.haproxy-config'
+  }
+]
+scopeName: "source.haproxy-config"
