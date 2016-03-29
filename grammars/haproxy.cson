@@ -42,7 +42,7 @@ patterns: [
     name: "keyword.other.no-validate-params.haproxy-config"
   }
   {
-    match: "\\s+((len|timeout|roundrobin|health|global|abortonclose|allbackups|checkcache|clitcpka|dontlognull|forceclose|forwardfor|httpchk|smtpchk|httpclose|httplog|keepalive|logasap|persist|srvtcpka|ssl-hello-chk|tcplog|tcpka|tcpsplice|except|uri|realm|auth|scope|enable|kern|user|mail|daemon|auth|syslog|lpr|news|uucp|cron|auth2|ftp|ntp|audit|alert|cron2|local0|local1|local2|local3|local4|local5|local6|local7|emerg|crit|err|warning|notice|info|debug|rewrite|insert|nocache|postonly|indirect|prefix|request|response|header|check|cookie|backup|inter|rise|fall|port|source|minconn|maxconn|weight|usesrc|http|tcp)\\s+)+"
+    match: "\\s+((len|timeout|roundrobin|health|global|abortonclose|allbackups|checkcache|clitcpka|dontlognull|forceclose|forwardfor|httpchk|smtpchk|httpclose|httplog|keepalive|logasap|persist|srvtcpka|ssl-hello-chk|tcplog|tcpka|tcpsplice|except|uri|realm|auth|scope|enable|kern|user|mail|daemon|auth|syslog|lpr|news|uucp|cron|auth2|ftp|ntp|audit|alert|cron2|local0|local1|local2|local3|local4|local5|local6|local7|emerg|crit|err|warning|notice|info|debug|rewrite|insert|nocache|postonly|indirect|prefix|location|scheme|code|request|response|header|check|cookie|backup|inter|rise|fall|port|source|minconn|maxconn|weight|usesrc|http|tcp)\\s+)+"
     name: "variable.language.reserved.haproxy-config"
   }
   {
