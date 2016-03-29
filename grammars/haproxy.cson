@@ -34,16 +34,32 @@ patterns: [
     name: "variable.parameter.ip-port.haproxy-config"
   }
   {
-    match: "^\\s*(chroot|cliexp|clitimeout|contimeout|daemon|debug|disabled|enabled|fullconn|gid|grace|group|maxconn|monitor-uri|nbproc|noepoll|nopoll|pidfile|quiet|redispatch|retries|reqallow|reqdel|reqdeny|reqpass|reqtarpit|reqiallow|reqidel|reqideny|reqipass|reqitarpit|rspdel|rspdeny|rspidel|rspideny|reqsetbe|reqisetbe|reqadd|reqiadd|rspadd|rspiadd|servexp|srvtimeout|uid|ulimit-n|user|reqrep|reqirep|rsprep|rspirep|errorloc|errorloc302|errorloc303|default_backend|appsession|bind|balance|cookie|capture|dispatch|source|mode|monitor-net|option|stats|server|log|check|inter|rise|fall|backup|errorfile)\\b"
+    match: "^\\s*(acl|appsession|backlog|balance|bind|bind-process|block|clitimeout|compression|contimeout|cookie|default-server|default_backend|description|disabled|dispatch|enabled|errorfile|errorloc|errorloc302|errorloc303|force-persist|fullconn|grace|hash-type|http-request|http-response|http-reuse|http-send-name-header|id|ignore-persist|load-server-state-from-file|log|log-format|log-format-sd|log-tag|max-keep-alive-queue|maxconn|mode|monitor-net|monitor-uri|redirect|redisp|redispatch|reqadd|reqallow|reqdel|reqdeny|reqiallow|reqidel|reqideny|reqipass|reqirep|reqitarpit|reqpass|reqrep|reqtarpit|retries|rspadd|rspdel|rspdeny|rspidel|rspideny|rspirep|rsprep|server|server-state-file-name|source|srvtimeout|stick-table|transparent|unique-id-format|unique-id-header|use-server|use_backend)\\b"
     name: "keyword.other.no-validate-params.haproxy-config"
   }
   {
-    match: "^\\s*(acl|use_backend|redirect|http-request|http-response)\\b"
+    match: "^\\s*(51degrees-cache-size|51degrees-data-file|51degrees-property-name-list|51degrees-property-separator|ca-base|chroot|cpu-map|crt-base|daemon|debug|description|deviceatlas-json-file|deviceatlas-log-level|deviceatlas-properties-cookie|deviceatlas-separator|external-check|gid|group|log|log-send-hostname|log-tag|lua-load|max-spread-checks|maxcompcpuusage|maxcomprate|maxconn|maxconnrate|maxpipes|maxsessrate|maxsslconn|maxsslrate|maxzlibmem|nbproc|node|noepoll|nogetaddrinfo|nokqueue|nopoll|nosplice|pidfile|quiet|server-state-base|server-state-file|spread-checks|ssl-default-bind-ciphers|ssl-default-bind-options|ssl-default-server-ciphers|ssl-default-server-options|ssl-dh-param-file|ssl-server-verify|stats|tune.buffers.limit|tune.buffers.reserve|tune.bufsize|tune.chksize|tune.comp.maxlevel|tune.http.cookielen|tune.http.maxhdr|tune.idletimer|tune.lua.forced-yield|tune.lua.maxmem|tune.lua.service-timeout|tune.lua.session-timeout|tune.lua.task-timeout|tune.maxaccept|tune.maxpollevents|tune.maxrewrite|tune.pattern.cache-size|tune.pipesize|tune.rcvbuf.client|tune.rcvbuf.server|tune.sndbuf.client|tune.sndbuf.server|tune.ssl.cachesize|tune.ssl.default-dh-param|tune.ssl.force-private-cache|tune.ssl.lifetime|tune.ssl.maxrecord|tune.ssl.ssl-ctx-cache-size|tune.vars.global-max-size|tune.vars.reqres-max-size|tune.vars.sess-max-size|tune.vars.txn-max-size|tune.zlib.memlevel|tune.zlib.windowsize|uid|ulimit-n|unix-bind|user)\\b"
     name: "keyword.other.no-validate-params.haproxy-config"
   }
   {
-    match: "\\s+((len|timeout|roundrobin|health|global|abortonclose|allbackups|checkcache|clitcpka|dontlognull|forceclose|forwardfor|httpchk|smtpchk|httpclose|httplog|keepalive|logasap|persist|srvtcpka|ssl-hello-chk|tcplog|tcpka|tcpsplice|except|uri|realm|auth|scope|enable|kern|user|mail|daemon|auth|syslog|lpr|news|uucp|cron|auth2|ftp|ntp|audit|alert|cron2|local0|local1|local2|local3|local4|local5|local6|local7|emerg|crit|err|warning|notice|info|debug|rewrite|insert|nocache|postonly|indirect|prefix|location|scheme|code|request|response|header|check|cookie|backup|inter|rise|fall|port|source|minconn|maxconn|weight|usesrc|http|tcp)\\s+)+"
+    match: "^\\s*(capture|declare|email-alert|external-check|http-check|monitor|option|persist|rate-limit|stats|stick|tcp-check|tcp-request|tcp-response|timeout)\\b"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  {
+    match: "\\s+(abortonclose|accept-invalid-http-request|accept-invalid-http-response|admin|allbackups|auth|capture|check|checkcache|client|client-fin|clitcpka|clitimeout|command|connect|connection|content|contimeout|contstats|cookie|disable-on-404|dontlog-normal|dontlognull|enable|expect|external-check|fail|forceclose|forwardfor|from|hide-version|http-buffer-request|http-ignore-probes|http-keep-alive|http-no-delay|http-pretend-keepalive|http-request|http-server-close|http-tunnel|http-use-proxy-header|http_proxy|httpchk|httpclose|httplog|independent-streams|inspect-delay|ldap-check|level|log-health-checks|log-separate-errors|logasap|mailers|match|myhostname|mysql-check|nolinger|on|originalto|path|persist|pgsql-check|prefer-last-server|queue|rdp-cookie|realm|redis-check|redispatch|refresh|scope|send|send-binary|send-state|server|server-fin|sessions|show-desc|show-legends|show-node|smtpchk|socket-stats|splice-auto|splice-request|splice-response|srvtcpka|srvtimeout|ssl-hello-chk|store-request|store-response|tarpit|tcp-check|tcp-smart-accept|tcp-smart-connect|tcpka|tcplog|to|transparent|tunnel|uri)(?=\\s+)"
     name: "variable.language.reserved.haproxy-config"
+  }
+  {
+    match: "\\s+(accept-proxy|alpn|backlog|ca-file|ca-ignore-err|ca-sign-file|ca-sign-passphrase|ciphers|crl-file|crt|crt-ignore-err|crt-list|defer-accept|ecdhe|force-sslv3|force-tlsv10|force-tlsv11|force-tlsv12|generate-certificates|gid|group|id|interface|level|maxconn|mode|mss|name|namespace|nice|no-sslv3|no-tls-tickets|no-tlsv10|no-tlsv11|no-tlsv12|npn|process|ssl|strict-sni|tcp-ut|tfo|tls-ticket-keys|transparent|uid|user|v4v6|v6only|verify)(?=\\s+)"
+    name: "variable.language.reserved.haproxy-config"
+  }
+  {
+    match: "\\s+(addr|agent-check|agent-inter|agent-port|backup|ca-file|check|check-send-proxy|check-ssl|ciphers|cookie|crl-file|crt|disabled|downinter|error-limit|fall|fastinter|force-sslv3|force-tlsv10|force-tlsv11|force-tlsv12|id|inter|maxconn|maxqueue|minconn|namespace|no-ssl-reuse|no-sslv3|no-tls-tickets|no-tlsv10|no-tlsv11|no-tlsv12|non-stick|observe|on-error|on-marked-down|on-marked-up|port|redir|resolve-prefer|resolvers|rise|send-proxy|send-proxy-v2|send-proxy-v2-ssl|send-proxy-v2-ssl-cn|slowstart|sni|source|ssl|tcp-ut|track|verify|verifyhost|weight)(?=\\s+)"
+    name: "variable.language.reserved.haproxy-config"
+  }
+  {
+    match: "\\s+(roundrobin|static-rr|leastconn|first|url_param|health|global|httplog|except|kern|user|mail|daemon|auth|syslog|lpr|news|uucp|cron|auth2|ftp|ntp|audit|alert|cron2|local0|local1|local2|local3|local4|local5|local6|local7|emerg|crit|err|warning|notice|info|debug|rewrite|insert|nocache|postonly|indirect|prefix|location|scheme|code|request|response|header|check|cookie|weight|usesrc|http|tcp)(?=\\s+)"
+    name: "variable.language.reserved.extra.haproxy-config"
   }
   {
     match: "\\\\"
