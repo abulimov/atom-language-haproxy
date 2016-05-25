@@ -2,8 +2,8 @@ fileTypes: [
   "haproxy"
   "cfg"
 ]
-foldingStartMarker: "^(global|defaults|listen|frontend|backend|ruleset)"
-foldingStopMarker: "^(global|defaults|listen|frontend|backend|ruleset)"
+foldingStartMarker: "^(global|defaults|listen|frontend|backend|ruleset|userlist)"
+foldingStopMarker: "^(global|defaults|listen|frontend|backend|ruleset|userlist)"
 name: "HAProxy"
 patterns: [
   {
