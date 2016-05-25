@@ -1,6 +1,6 @@
 {
   "name": "language-haproxy",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Syntax support for HAProxy configuration files",
   "keywords": [],
   "repository": "https://github.com/abulimov/atom-language-haproxy",
