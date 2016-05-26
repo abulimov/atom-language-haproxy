@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # quick-and-dirty script to generate haproxy.cson from haproxy docs
 
+import argparse
 from itertools import chain
 
 def get_data_from_table(lines):
@@ -92,7 +93,19 @@ def parse_doubles(double):
     return m
 
 def main():
-    with open("configuration.txt", "r") as f:
+    parser = argparse.ArgumentParser(description='Generate HAProxy grammars for Atom.')
+    parser.add_argument('-o', '--out', dest='out',
+                        default="haproxy.cson",
+                        help='write grammars to this file')
+    parser.add_argument('-t', '--template', dest='template',
+                        default="haproxy.cson.template",
+                        help='grammars template file')
+    parser.add_argument('-d', '--docs', dest='docs',
+                        default="configuration.txt",
+                        help='HAProxy docs file')
+
+    args = parser.parse_args()
+    with open(args.docs, "r") as f:
         lines = f.readlines()
 
     keywords, double = get_data_from_table(lines)
@@ -121,7 +134,7 @@ def main():
     server_options_string = r"\\s+({0})(?=\\s+)".format("|".join(server_options))
     bind_options_string = r"\\s+({0})(?=\\s+)".format("|".join(bind_options))
 
-    with open("haproxy.cson.template", "r") as f:
+    with open(args.template, "r") as f:
         template = f.read()
 
     output = template \
@@ -133,7 +146,7 @@ def main():
         .replace("{bind_options}", bind_options_string)
 
 
-    with open("haproxy.cson", "w") as f:
+    with open(args.out, "w") as f:
         f.write(output)
 
 if __name__ == "__main__":
