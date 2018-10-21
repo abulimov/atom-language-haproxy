@@ -4,6 +4,61 @@
 import argparse
 from itertools import chain
 
+def get_data_from_global(lines):
+    keywords = []
+    started = False
+    for line in lines:
+        if line.startswith("3. Global parameters"):
+            started = True
+            continue
+        if line.startswith("3.1. Process management and security"):
+            break
+        if started:
+            stripped = line.strip()
+            if stripped.startswith("- "):
+                keywords.append(stripped.lstrip("- "))
+    return keywords
+
+def get_data_from_peers(lines):
+    keywords = []
+    found_paragraph = False
+    started = False
+    for line in lines:
+        if line.startswith("3.5. Peers"):
+            found_paragraph = True
+            continue
+        if line.startswith("3.6. Mailers"):
+            break
+        if found_paragraph:
+            if line.startswith("peers <peersect>"):
+                started = True
+                continue
+        if started:
+            stripped = line.strip()
+            if stripped and not line.startswith(" "):
+                keywords.append(stripped.split()[0])
+    return keywords
+
+def get_data_from_mailers(lines):
+    keywords = []
+    found_paragraph = False
+    started = False
+    for line in lines:
+        if line.startswith("3.6. Mailers"):
+            found_paragraph = True
+            continue
+        if line.startswith("3.7. Modules"):
+            break
+        if found_paragraph:
+            if line.startswith("mailers <mailersect>"):
+                started = True
+                continue
+        if started:
+            stripped = line.strip()
+            if stripped and not line.startswith(" "):
+                keywords.append(stripped.split()[0])
+    return keywords
+
 def get_data_from_table(lines):
     keywords = []
     double = []
@@ -24,21 +79,6 @@ def get_data_from_table(lines):
             elif splitted[2] in next_words:
                 double.append(splitted[0] + " " + splitted[1])
     return keywords, double
-
-def get_data_from_global(lines):
-    keywords = []
-    started = False
-    for line in lines:
-        if line.startswith("3. Global parameters"):
-            started = True
-            continue
-        if line.startswith("3.1. Process management and security"):
-            break
-        if started:
-            stripped = line.strip()
-            if stripped.startswith("- "):
-                keywords.append(stripped.lstrip("- "))
-    return keywords
 
 def get_data_from_bind(lines):
     keywords = []
@@ -115,6 +155,12 @@ def main():
     keywords.sort()
     global_keywords.sort()
 
+    peers_options = list(set(get_data_from_peers(lines)))
+    peers_options.sort()
+
+    mailers_options = list(set(get_data_from_mailers(lines)))
+    mailers_options.sort()
+
     double_first = list(set(double_params.keys()))
     double_first.sort()
 
@@ -133,6 +179,8 @@ def main():
     double_second_string = r"\\s+({0})(?=\\s+)".format("|".join(double_second))
     server_options_string = r"\\s+({0})(?=\\s+)".format("|".join(server_options))
     bind_options_string = r"\\s+({0})(?=\\s+)".format("|".join(bind_options))
+    mailers_options_string = r"\\s+({0})(?=\\s+)".format("|".join(mailers_options))
+    peers_options_string = r"\\s+({0})(?=\\s+)".format("|".join(peers_options))
 
     with open(args.template, "r") as f:
         template = f.read()
@@ -143,8 +191,9 @@ def main():
         .replace("{double_first}", double_first_string) \
         .replace("{double_second}", double_second_string) \
         .replace("{server_options}", server_options_string) \
-        .replace("{bind_options}", bind_options_string)
-
+        .replace("{bind_options}", bind_options_string) \
+        .replace("{mailers_options}", mailers_options_string) \
+        .replace("{peers_options}", peers_options_string)
 
     with open(args.out, "w") as f:
         f.write(output)
