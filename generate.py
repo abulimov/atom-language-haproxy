@@ -176,11 +176,11 @@ def main():
     keywords_string = r"^\\s*({0})\\b".format("|".join(keywords))
     global_keywords_string = r"^\\s*({0})\\b".format("|".join(global_keywords))
     double_first_string = r"^\\s*({0})\\b".format("|".join(double_first))
-    double_second_string = r"\\s+({0})(?=\\s+)".format("|".join(double_second))
-    server_options_string = r"\\s+({0})(?=\\s+)".format("|".join(server_options))
-    bind_options_string = r"\\s+({0})(?=\\s+)".format("|".join(bind_options))
-    mailers_options_string = r"\\s+({0})(?=\\s+)".format("|".join(mailers_options))
-    peers_options_string = r"\\s+({0})(?=\\s+)".format("|".join(peers_options))
+    double_second_string = r"\\s+({0})(?=\\s+|$)".format("|".join(double_second))
+    server_options_string = r"\\s+({0})(?=\\s+|$)".format("|".join(server_options))
+    bind_options_string = r"\\s+({0})(?=\\s+|$)".format("|".join(bind_options))
+    mailers_options_string = r"\\s+({0})(?=\\s+|$)".format("|".join(mailers_options))
+    peers_options_string = r"\\s+({0})(?=\\s+|$)".format("|".join(peers_options))
 
     with open(args.template, "r") as f:
         template = f.read()
