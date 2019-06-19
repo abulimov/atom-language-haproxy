@@ -6,8 +6,8 @@ fileTypes: [
   "haproxy"
   "cfg"
 ]
-foldingStartMarker: "^(backend|defaults|frontend|global|listen|mailers|peers|ruleset|userlist)"
-foldingStopMarker: "^(backend|defaults|frontend|global|listen|mailers|peers|ruleset|userlist)"
+foldingStartMarker: "^(backend|cache|defaults|frontend|global|listen|mailers|peers|program|resolvers|ruleset|userlist)"
+foldingStopMarker: "^(backend|cache|defaults|frontend|global|listen|mailers|peers|program|resolvers|ruleset|userlist)"
 name: "HAProxy"
 patterns: [
   {
@@ -20,7 +20,7 @@ patterns: [
         name: "punctuation.separator.ip.haproxy-config"
       "6":
         name: "variable.parameter.ip-port.haproxy-config"
-    match: "^(backend|defaults|frontend|global|listen|mailers|peers|ruleset|userlist)\\s*(\\S+)?\\s*((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?(,)?((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?"
+    match: "^(backend|cache|defaults|frontend|global|listen|mailers|peers|program|resolvers|ruleset|userlist)\\s*(\\S+)?\\s*((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?(,)?((\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})?:\\d{1,5})?"
     name: "meta.tag.haproxy-config"
   }
   # Comment
@@ -50,6 +50,11 @@ patterns: [
     match: "{global_keywords}"
     name: "keyword.other.no-validate-params.haproxy-config"
   }
+  # Userlists
+  {
+    match: "{userlists_options}"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
   # Mailers
   {
     match: "{mailers_options}"
@@ -59,6 +64,31 @@ patterns: [
   {
     match: "{peers_options}"
     name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  # Programs
+  {
+    match: "{programs_options}"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  # Resolvers
+  {
+    match: "{resolvers_options}"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  # Cache
+  {
+    match: "\\s+(cache|total-max-size|max-object-size|max-age)(?=\\s+|$)"
+    name: "keyword.other.no-validate-params.haproxy-config"
+  }
+  # Filter SPOE options
+  {
+    match: "\\s+(engine|config)(?=\\s+)"
+    name: "variable.language.reserved.haproxy-config"
+  }
+  # Filter Trace options
+  {
+    match: "\\s+(name|random-parsing|random-forwarding|hexdump)(?=\\s+)"
+    name: "variable.language.reserved.haproxy-config"
   }
   # Keywords made up of two words - first word
   {
@@ -85,9 +115,14 @@ patterns: [
     match: "\\s+(type|size|expire|nopurge|peers|store)(?=\\s+)"
     name: "variable.language.reserved.haproxy-config"
   }
-  # http-request / http-response options
+  # http-request options
   {
-    match: "\\s+(allow|auth|redirect|reject|tarpit|deny|deny_status|add-header|set-challenge|set-header|set-src|set-status|capture|len|id|del-header|set-nice|set-log-level|replace-header|replace-value|set-method|set-uri|add-acl|del-acl|del-map|set-map|set-var|unset-var|track-sc0|track-sc1|track-sc2|sc-inc-gpc0|sc-inc-gpc1|sc-set-gpt0|silent-drop|send-spoe-group|cache-store|cache-use)(?=\\s+)"
+    match: "{http_request_options}"
+    name: "variable.language.reserved.haproxy-config"
+  }
+  # http-response options
+  {
+    match: "{http_response_options}"
     name: "variable.language.reserved.haproxy-config"
   }
   # Keyword options
@@ -99,15 +134,45 @@ patterns: [
     match: "\\\\"
     name: "constant.character.escape.haproxy-config"
   }
-  # Fetches
+  # Converters
   {
-    match: "\\s+((base|cook|hdr|path|shdr|url|urlp)(_beg|_dir|_dom|_end|_len|_reg|_sub)?)\\b"
+    match: "{converters}"
     name: "entity.name.function.hdr.haproxy-config"
+  }
+  # Internal State Fetches
+  {
+    match: "\\s+({internal_state_fetches})\\b"
+    name: "variable.function.haproxy-config"
+  }
+  # Layer 4 Fetches
+  {
+    match: "\\s+({layer4_fetches})\\b"
+    name: "variable.function.haproxy-config"
+  }
+  # Layer 5 Fetches
+  {
+    match: "\\s+({layer5_fetches})\\b"
+    name: "variable.function.haproxy-config"
+  }
+  # Layer 6 Fetches
+  {
+    match: "\\s+({layer6_fetches})\\b"
+    name: "variable.function.haproxy-config"
+  }
+  # Layer 7 Fetches
+  {
+    match: "\\s+({layer7_fetches})\\b"
+    name: "variable.function.haproxy-config"
   }
   # ACL conditionals
   {
-    match: "\\b(if|rewrite)\\b"
-    name: "keyword.control.directive.module.http.rewrite"
+    match: "\\b(if|unless)\\b"
+    name: "keyword.control.conditional.haproxy-config"
+  }
+  # Filter SPOE options
+  {
+    match: "\\s+(engine|config)(?=\\s+)"
+    name: "variable.language.reserved.haproxy-config"
   }
   {
     match: "%\\[[^\\]]+\\]"
@@ -116,7 +181,7 @@ patterns: [
   # Logical operators
   {
     match: "\\s+(or|\\|\\||!)\\s+"
-    name: "keyword.operator.logical.haproxy-config"
+    name: "keyword.operator.word.haproxy-config"
   }
 ]
 scopeName: "source.haproxy-config"
